@@ -1,0 +1,28 @@
+{
+  "name": "waffle",
+  "version": "1.0.0",
+  "description": "node js api with koa",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manviel/Waffle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manviel/Waffle/issues"
+  },
+  "homepage": "https://github.com/Manviel/Waffle#readme",
+  "dependencies": {
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
