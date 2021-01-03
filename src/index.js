@@ -6,12 +6,17 @@ const cors = require("@koa/cors");
 require("dotenv").config();
 
 const errorHandler = require("./middleware/errorHandler");
+const initDB = require("./middleware/database");
+const authenticated = require("./middleware/authenticated");
 
-const authRoute = require("./api/auth");
-const publicRoute = require("./api/public");
+const authRoute = require("./routes/auth");
+const publicRoute = require("./routes/public");
+const orderRoute = require("./routes/order");
 
 const app = new Koa();
 const router = new Router();
+
+initDB();
 
 const logger = async (ctx, next) => {
   const start = Date.now();
@@ -25,6 +30,7 @@ app.use(logger).use(errorHandler).use(bodyParser()).use(cors());
 
 router.get("/", publicRoute);
 router.post("/auth", authRoute);
+router.get("/orders", authenticated, orderRoute);
 
 app.use(router.routes()).use(router.allowedMethods());
 

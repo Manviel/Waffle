@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const authRoute = (ctx) => {
   const { username, password } = ctx.request.body;
 
-  console.log(ctx.request);
-
   if (!username) ctx.throw(422, "Username required.");
   if (!password) ctx.throw(422, "Password required.");
 
@@ -13,7 +11,7 @@ const authRoute = (ctx) => {
   const token = jwt.sign(payload, secret);
 
   ctx.body = {
-    token,
+    token: `Bearer ${token}`,
   };
 };
 

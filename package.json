@@ -23,7 +23,8 @@
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.0",
-    "koa-bodyparser": "^4.3.0"
+    "koa-bodyparser": "^4.3.0",
+    "mongoose": "^5.11.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
