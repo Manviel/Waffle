@@ -3,6 +3,8 @@ const Router = require("@koa/router");
 const bodyParser = require("koa-bodyparser");
 const cors = require("@koa/cors");
 
+require("dotenv").config();
+
 const errorHandler = require("./middleware/errorHandler");
 
 const authRoute = require("./api/auth");
@@ -26,4 +28,4 @@ router.post("/auth", authRoute);
 
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(3080);
+app.listen(process.env.API_PORT);

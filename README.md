@@ -14,4 +14,6 @@ Run `npm start` for a prod server.
 
 ## Must have
 
-https://travishorn.com/api-server-with-jwt-authentication-6bb4985c5253
+Example [API](https://travishorn.com/api-server-with-jwt-authentication-6bb4985c5253)
+
+Client [Project](https://github.com/Manviel/Candy)
