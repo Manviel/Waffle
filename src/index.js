@@ -11,7 +11,7 @@ const authenticated = require("./middleware/authenticated");
 
 const authRoute = require("./routes/auth");
 const publicRoute = require("./routes/public");
-const orderRoute = require("./routes/order");
+const customerRoute = require("./routes/customer");
 
 const app = new Koa();
 const router = new Router();
@@ -29,8 +29,8 @@ const logger = async (ctx, next) => {
 app.use(logger).use(errorHandler).use(bodyParser()).use(cors());
 
 router.get("/", publicRoute);
-router.post("/auth", authRoute);
-router.get("/orders", authenticated, orderRoute);
+router.use("/auth", authRoute);
+router.get("/customers", authenticated, customerRoute);
 
 app.use(router.routes()).use(router.allowedMethods());
 
