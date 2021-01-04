@@ -12,7 +12,7 @@ const authenticated = async (ctx, next) => {
   try {
     ctx.request.jwtPayload = jwt.verify(token, secret);
   } catch (err) {
-    ctx.throw(err.status || 403, err.text);
+    ctx.throw(403, "Token expired");
   }
 };
 

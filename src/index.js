@@ -3,6 +3,8 @@ const Router = require("@koa/router");
 const bodyParser = require("koa-bodyparser");
 const cors = require("@koa/cors");
 const compress = require("koa-compress");
+const swagger = require("swagger2");
+const { ui } = require("swagger2-koa");
 
 require("dotenv").config();
 
@@ -17,6 +19,8 @@ const customerRoute = require("./routes/customer");
 const app = new Koa();
 const router = new Router();
 
+const swaggerDocument = swagger.loadDocumentSync("swagger.yaml");
+
 initDB();
 
 const logger = async (ctx, next) => {
@@ -27,12 +31,18 @@ const logger = async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 };
 
-app.use(logger).use(errorHandler).use(bodyParser()).use(cors()).use(compress());
-
 router.get("/", publicRoute);
 router.use("/auth", authRoute);
 router.get("/customers", authenticated, customerRoute);
 
-app.use(router.routes()).use(router.allowedMethods());
+app
+  .use(ui(swaggerDocument, "/docs"))
+  .use(logger)
+  .use(errorHandler)
+  .use(bodyParser())
+  .use(cors())
+  .use(compress())
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 app.listen(process.env.API_PORT);

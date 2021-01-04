@@ -1,10 +1,14 @@
 const Customer = require("../models/Customer");
 
 const customerRoute = async (ctx) => {
-  const query = {};
+  const { page, limit } = ctx.request.query;
+
+  const offset = +page * +limit;
 
   try {
-    const customers = await Customer.find(query).limit(10);
+    const customers = await Customer.find({})
+      .skip(offset)
+      .limit(+limit);
 
     ctx.body = customers;
   } catch (err) {
