@@ -2,6 +2,7 @@ const Koa = require("koa");
 const Router = require("@koa/router");
 const bodyParser = require("koa-bodyparser");
 const cors = require("@koa/cors");
+const compress = require("koa-compress");
 
 require("dotenv").config();
 
@@ -26,7 +27,7 @@ const logger = async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 };
 
-app.use(logger).use(errorHandler).use(bodyParser()).use(cors());
+app.use(logger).use(errorHandler).use(bodyParser()).use(cors()).use(compress());
 
 router.get("/", publicRoute);
 router.use("/auth", authRoute);

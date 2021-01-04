@@ -1,8 +1,8 @@
 const Mongoose = require("mongoose");
 
-const initDB = () => {
+const initDB = async () => {
   Mongoose.connect(
-    "mongodb+srv://admin0:admin0@cluster0.1rr9h.mongodb.net/sample_analytics",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1rr9h.mongodb.net/${process.env.DB_NAME}`,
     { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
   );
 

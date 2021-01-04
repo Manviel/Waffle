@@ -1,4 +1,4 @@
-const publicRoute = (ctx) => {
+const publicRoute = async (ctx) => {
   ctx.body = {
     status: "success",
     message:

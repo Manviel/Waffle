@@ -43,7 +43,7 @@ module.exports.register = async (ctx) => {
   });
 
   if (candidate) {
-    ctx.throw(401, "Email already taken");
+    ctx.throw(401, "Username already taken");
   } else {
     const salt = bcrypt.genSaltSync(10);
 
