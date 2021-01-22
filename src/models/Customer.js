@@ -1,5 +1,7 @@
 const Mongoose = require("mongoose");
 
+const { initDataBaseAnalytics } = require("../middleware/database");
+
 const Schema = Mongoose.Schema;
 
 const customerSchema = new Schema({
@@ -11,4 +13,4 @@ const customerSchema = new Schema({
   active: Boolean,
 });
 
-module.exports = Mongoose.model("customers", customerSchema);
+module.exports = initDataBaseAnalytics.model("customers", customerSchema);

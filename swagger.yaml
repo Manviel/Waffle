@@ -51,6 +51,35 @@ paths:
         500:
           $ref: "#/responses/500"
 
+  /companies:
+    get:
+      summary: "Display list of the companies"
+      description: "The response will be text"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "page"
+          schema:
+            type: "integer"
+          description: "Page to paginate"
+          required: true
+        - in: "query"
+          name: "limit"
+          schema:
+            type: "integer"
+          description: "Limit to paginate"
+          required: true
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Public"
+        500:
+          $ref: "#/responses/500"
+
 responses:
   400:
     description: Bad Request

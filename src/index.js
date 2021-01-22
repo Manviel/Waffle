@@ -9,19 +9,17 @@ const { ui } = require("swagger2-koa");
 require("dotenv").config();
 
 const errorHandler = require("./middleware/errorHandler");
-const initDB = require("./middleware/database");
 const authenticated = require("./middleware/authenticated");
 
 const authRoute = require("./routes/auth");
 const publicRoute = require("./routes/public");
 const customerRoute = require("./routes/customer");
+const companyRoute = require("./routes/company");
 
 const app = new Koa();
 const router = new Router();
 
 const swaggerDocument = swagger.loadDocumentSync("swagger.yaml");
-
-initDB();
 
 const logger = async (ctx, next) => {
   const start = Date.now();
@@ -34,6 +32,7 @@ const logger = async (ctx, next) => {
 router.get("/", publicRoute);
 router.use("/auth", authRoute);
 router.get("/customers", authenticated, customerRoute);
+router.get("/companies", companyRoute);
 
 app
   .use(ui(swaggerDocument, "/docs"))
