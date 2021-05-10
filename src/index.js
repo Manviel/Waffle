@@ -14,7 +14,7 @@ const authenticated = require("./middleware/authenticated");
 const authRoute = require("./routes/auth");
 const publicRoute = require("./routes/public");
 const customerRoute = require("./routes/customer");
-const companyRoute = require("./routes/company");
+const { companyRoute, getCompanyById } = require("./routes/company");
 
 const app = new Koa();
 const router = new Router();
@@ -33,6 +33,7 @@ router.get("/", publicRoute);
 router.use("/auth", authRoute);
 router.get("/customers", authenticated, customerRoute);
 router.get("/companies", companyRoute);
+router.get("/companies/:id", getCompanyById);
 
 app
   .use(ui(swaggerDocument, "/docs"))

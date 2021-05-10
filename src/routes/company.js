@@ -16,4 +16,19 @@ const companyRoute = async (ctx) => {
   }
 };
 
-module.exports = companyRoute;
+const getCompanyById = async (ctx) => {
+  const { id } = ctx.request.params;
+
+  try {
+    const company = await Company.findById(id);
+
+    ctx.body = company;
+  } catch (err) {
+    ctx.throw(err.status || 403, err.text);
+  }
+};
+
+module.exports = {
+  companyRoute,
+  getCompanyById,
+};
